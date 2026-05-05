@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -56,7 +57,7 @@ public class Resenia {
     @Column( name = "fecha_resenia", nullable = false, updatable = false)
     private LocalDateTime fechaResenia;
 
-    @ManyToOne()
+    @ManyToOne( fetch = FetchType.LAZY)
     @JoinColumn(
         name = "estudiante_id",
         nullable = false,
@@ -64,7 +65,7 @@ public class Resenia {
     )
     private Usuario estudiante;
 
-    @ManyToOne()
+    @ManyToOne( fetch = FetchType.LAZY)
     @JoinColumn(
         name = "curso_id",
         nullable = false,

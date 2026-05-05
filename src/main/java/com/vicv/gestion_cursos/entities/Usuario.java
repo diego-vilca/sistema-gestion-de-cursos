@@ -6,6 +6,7 @@ import java.util.Set;
 
 import com.vicv.gestion_cursos.common.enums.EstadoUsuario;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -26,7 +27,7 @@ import lombok.ToString;
 @Entity
 @Setter
 @Getter
-@EqualsAndHashCode( onlyExplicitlyIncluded = true)                              // mejor que @EqualsAndHashCode(of = "id")
+@EqualsAndHashCode( onlyExplicitlyIncluded = true)                              // mejor que @EqualsAndHashCode(of = "id"), necesario para el uso Sets
 @ToString( exclude = { "cursos", "inscripciones", "resenias", "roles"})         // excluyo colecciones en relaciones bidireccionales para evitar loop ciclico.
 @Table(
     name = "usuarios",
@@ -70,13 +71,24 @@ public class Usuario {
     private EstadoUsuario estado;
 
     // relaciones
-    @OneToMany( mappedBy = "instructor")
+    @OneToMany( 
+        mappedBy = "instructor",
+        cascade = CascadeType.PERSIST
+    )
     private Set<Curso> cursos;
 
-    @OneToMany( mappedBy = "estudiante")
+    @OneToMany( 
+        mappedBy = "estudiante",
+        cascade = { CascadeType.PERSIST, CascadeType.REMOVE},
+        orphanRemoval = true
+    )
     private Set<Inscripcion> inscripciones;
 
-    @OneToMany( mappedBy = "estudiante")
+    @OneToMany( 
+        mappedBy = "studiante",
+        cascade = { CascadeType.PERSIST, CascadeType.REMOVE},
+        orphanRemoval = true
+    )
     private Set<Resenia> resenias;
 
     @ManyToMany( mappedBy = "usuarios")

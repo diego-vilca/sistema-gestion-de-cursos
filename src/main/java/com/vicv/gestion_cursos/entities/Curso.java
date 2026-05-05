@@ -7,10 +7,12 @@ import java.util.Set;
 import com.vicv.gestion_cursos.common.enums.EstadoCurso;
 import com.vicv.gestion_cursos.common.enums.NivelCurso;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -70,7 +72,7 @@ public class Curso {
     private NivelCurso nivel;
 
     // relaciones
-    @ManyToOne
+    @ManyToOne( fetch = FetchType.LAZY)
     @JoinColumn(
         name = "instructor_id",
         nullable = false,
@@ -79,12 +81,16 @@ public class Curso {
     private Usuario instructor;
 
     @OneToMany(
-        mappedBy = "curso"      // referencia al atributo 'curso' de la clase Inscripcion
+        mappedBy = "curso",      // referencia al atributo 'curso' de la clase Inscripcion
+        cascade = { CascadeType.PERSIST, CascadeType.REMOVE},
+        orphanRemoval = true
     )
     private Set<Inscripcion> inscripciones;
 
     @OneToMany(
-        mappedBy = "curso"
+        mappedBy = "curso",
+        cascade = { CascadeType.PERSIST, CascadeType.REMOVE},
+        orphanRemoval = true
     )
     private Set<Resenia> resenias;
 

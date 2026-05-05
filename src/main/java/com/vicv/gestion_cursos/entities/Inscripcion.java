@@ -8,6 +8,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -64,7 +65,7 @@ public class Inscripcion {
     private EstadoInscripcion estado;
 
     // relaciones
-    @ManyToOne
+    @ManyToOne( fetch = FetchType.LAZY)
     @JoinColumn(
         name = "estudiante_id",     
         nullable = false,
@@ -72,7 +73,7 @@ public class Inscripcion {
     )
     private Usuario estudiante;
 
-    @ManyToOne
+    @ManyToOne( fetch = FetchType.LAZY)
     @JoinColumn(
         name = "curso_id",                                  // nombre de la columna de la FK
         nullable = false,           
