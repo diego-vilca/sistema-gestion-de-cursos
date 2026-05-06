@@ -36,7 +36,7 @@ import lombok.ToString;
 @ToString( exclude = { "instructor", "inscripciones", "resenias", "categorias"})
 @Table(
     name = "cursos",
-    uniqueConstraints = @UniqueConstraint( name = "UK_CURSO_TITULO", columnNames = "titulo") 
+    uniqueConstraints = @UniqueConstraint( name = "uk_curso_titulo", columnNames = "titulo") 
 )
 public class Curso {
 
@@ -76,7 +76,7 @@ public class Curso {
     @JoinColumn(
         name = "instructor_id",
         nullable = false,
-        foreignKey = @ForeignKey( name = "FK_INSTRUCTOR")
+        foreignKey = @ForeignKey( name = "fk_cursos_instructor_id__usuarios")
     )  
     private Usuario instructor;
 

@@ -35,7 +35,7 @@ import lombok.ToString;
 @Table(
     name = "inscripciones",
     uniqueConstraints = @UniqueConstraint(                  // define restricciones de unicidad.
-        name = "UK_INSCRIPCIONES_ESTUDIANTE_CURSO",   // unique key constraint, la combinación de las columnas estudiante_id
+        name = "uk_inscripciones_estudiante_curso",   // unique key constraint, la combinación de las columnas estudiante_id
         columnNames = {"estudiante_id", "curso_id"}         // y curso_id debe ser única
     )
 )
@@ -69,7 +69,7 @@ public class Inscripcion {
     @JoinColumn(
         name = "estudiante_id",     
         nullable = false,
-        foreignKey = @ForeignKey( name = "FK_ESTUDIANTE")
+        foreignKey = @ForeignKey( name = "fk_inscripciones_estudiante_id__usuarios")
     )
     private Usuario estudiante;
 
@@ -77,7 +77,7 @@ public class Inscripcion {
     @JoinColumn(
         name = "curso_id",                                  // nombre de la columna de la FK
         nullable = false,           
-        foreignKey = @ForeignKey( name = "FK_CURSO")        // nombre de la FK, util para debug, sino hibernate implementaria un nombre random
+        foreignKey = @ForeignKey( name = "fk_inscripciones_curso_id__cursos")        // nombre de la FK, util para debug, sino hibernate implementaria un nombre random
     )
     private Curso curso;
 }

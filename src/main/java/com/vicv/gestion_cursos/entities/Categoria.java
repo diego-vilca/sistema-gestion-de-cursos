@@ -53,12 +53,12 @@ public class Categoria {
         joinColumns = @JoinColumn( 
             name = "categoria_id", 
             nullable = false,
-            foreignKey = @ForeignKey( name = "FK_CATEGORIA")
+            foreignKey = @ForeignKey( name = "fk_curso_categoria_categoria_id__categorias")
         ),
         inverseJoinColumns = @JoinColumn( 
             name = "curso_id", 
             nullable = false,
-            foreignKey = @ForeignKey( name = "FK_CURSO")
+            foreignKey = @ForeignKey( name = "fk_curso_categoria_curso_id__cursos")
         )
     )
     private Set<Curso> cursos;

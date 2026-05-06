@@ -29,7 +29,7 @@ import lombok.Setter;
 @Table( 
     name = "resenias",
     uniqueConstraints = @UniqueConstraint(
-        name = "UK_RESENIA_ESTUDIANTE_CURSO",
+        name = "uk_resenia_estudiante_curso",
         columnNames = {"estudiante_id", "curso_id"}
     )
 )
@@ -61,7 +61,7 @@ public class Resenia {
     @JoinColumn(
         name = "estudiante_id",
         nullable = false,
-        foreignKey = @ForeignKey( name = "FK_ESTUDIANTE")
+        foreignKey = @ForeignKey( name = "fk_resenias_estudiante_id__usuarios")
     )
     private Usuario estudiante;
 
@@ -69,7 +69,7 @@ public class Resenia {
     @JoinColumn(
         name = "curso_id",
         nullable = false,
-        foreignKey = @ForeignKey( name = "FK_CURSO")
+        foreignKey = @ForeignKey( name = "fk_resenias_curso_id__cursos")
     )
     private Curso curso;
 }

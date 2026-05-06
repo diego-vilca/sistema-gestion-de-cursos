@@ -52,12 +52,12 @@ public class Rol {
         joinColumns = @JoinColumn(
             name = "rol_id", 
             nullable = false,
-            foreignKey = @ForeignKey( name = "FK_ROL")
+            foreignKey = @ForeignKey( name = "fk_usuario_rol_rol_id__roles")
         ),
         inverseJoinColumns = @JoinColumn( 
             name = "usuario_id", 
             nullable = false,
-            foreignKey = @ForeignKey( name = "FK_USUARIO")
+            foreignKey = @ForeignKey( name = "fk_usuario_rol_usuario_id__usuarios")
         )
     )
     private Set<Usuario> usuarios;

@@ -32,7 +32,7 @@ import lombok.ToString;
 @Table(
     name = "usuarios",
     uniqueConstraints = {
-        @UniqueConstraint( name = "UK_USUARIO_EMAIL", columnNames = "email")
+        @UniqueConstraint( name = "uk_usuario_email", columnNames = "email")
     } 
 )
 public class Usuario {
@@ -85,7 +85,7 @@ public class Usuario {
     private Set<Inscripcion> inscripciones;
 
     @OneToMany( 
-        mappedBy = "studiante",
+        mappedBy = "estudiante",
         cascade = { CascadeType.PERSIST, CascadeType.REMOVE},
         orphanRemoval = true
     )
